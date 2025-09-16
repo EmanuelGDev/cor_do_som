@@ -21,9 +21,9 @@ model User {
 }
 
 model Table {
-  id       Int     @id @default(autoincrement())
-  number   Int
-  orders   Order[]
+  id     Int    @id @default(autoincrement())
+  number Int
+  bills  Bill[]   
 }
 
 model Product {
@@ -31,16 +31,16 @@ model Product {
   name   String
   price  Float
   type   String
+  bills  Bill[]  
 }
 
-model Order {
-  id        Int      @id @default(autoincrement())
-  tableId   Int
-  productId Int
-  quantity  Int      @default(1)
-  status    String   @default("pending")
-  createdAt DateTime @default(now())
-
-  table   Table   @relation(fields: [tableId], references: [id])
+model Bill {
+  id      Int      @id @default(autoincrement())
+  name    String
+  amount  Float
+  tableId Int
+  table   Table    @relation(fields: [tableId], references: [id])
+  products Product[]  
 }
+
 
