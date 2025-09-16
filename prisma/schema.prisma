@@ -17,30 +17,29 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   name  String
+  cpf   String
   admin Boolean
 }
 
 model Table {
   id     Int    @id @default(autoincrement())
   number Int
-  bills  Bill[]   
+  bills  Bill[]
 }
 
 model Product {
-  id     Int     @id @default(autoincrement())
-  name   String
-  price  Float
-  type   String
-  bills  Bill[]  
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Float
+  type  String
+  bills Bill[]
 }
 
 model Bill {
-  id      Int      @id @default(autoincrement())
-  name    String
-  amount  Float
-  tableId Int
-  table   Table    @relation(fields: [tableId], references: [id])
-  products Product[]  
+  id       Int       @id @default(autoincrement())
+  name     String
+  amount   Float
+  tableId  Int
+  table    Table     @relation(fields: [tableId], references: [id])
+  products Product[]
 }
-
-
