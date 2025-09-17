@@ -6,6 +6,10 @@ interface UserProps{
     admin : boolean
 }
 
+interface DeleteUserParamns{
+    id : string
+}
+
 class UserService{
 
 
@@ -28,6 +32,19 @@ class UserService{
         })
 
         return user
+    }
+
+    async deleteUser(id : string ){
+        const user = await prisma.user.findFirst({
+            where:{id : Number(id)}
+        });
+
+        if(!user){
+            throw new Error("Usuário inexistente")
+        }
+
+        const deleteUser = await prisma.user.delete({where
+            :{id : Number(id)}})
     }
 }
 

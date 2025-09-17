@@ -8,14 +8,14 @@ async function userRoutes(fastify: FastifyInstance){
         
         userController.getUsers(request,reply))
 
-
-
     fastify.post('/create',(request : FastifyRequest, reply : FastifyReply) => 
         
         userController.createUser(request,reply))
         
+    fastify.delete('/delete/:id', (request: FastifyRequest, reply : FastifyReply)=>
+        
+        userController.deleteUser(request,reply))
 }
-
 
 export {userRoutes}
 

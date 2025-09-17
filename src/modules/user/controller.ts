@@ -9,18 +9,33 @@ class UserController {
     }
 
     async getUsers(request : FastifyRequest, reply : FastifyReply){
-        const users = await this.service.getUsers();
-
-        reply.send(users)
+        try{
+            const users = await this.service.getUsers();
+            return reply.code(200).send(users)
+        } catch(err){
+            return reply.code(400).send(err)
+        }
     }
 
     async createUser(request: FastifyRequest, reply : FastifyReply){
 
-        const {name, cpf, admin} = request.body as {name: string, cpf : string, admin: boolean}
+        try{
+            const {name, cpf, admin} = request.body as {name: string, cpf : string, admin: boolean}
+            const user = await this.service.createUser({name,cpf,admin});
+            return reply.code(200).send(user)
 
-        const user = await this.service.createUser({name,cpf,admin});
+        }catch(err){
+            return reply.code(400).send(err)
+        }
+    }
 
-        reply.send(user)
+    async deleteUser(request: FastifyRequest, reply : FastifyReply){
+        try{
+            const {id} = request.params as {id: string};
+            const user = await this.service.deleteUser(id);
+        }catch(err){
+            return reply.code(400).send(err)
+        }
     }
     
 }
