@@ -23,6 +23,7 @@ model User {
 
 model Table {
   id     Int    @id @default(autoincrement())
+  name String
   number Int
   bills  Bill[]
 }
