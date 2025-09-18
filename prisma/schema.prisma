@@ -17,13 +17,13 @@ datasource db {
 model User {
   id    Int     @id @default(autoincrement())
   name  String
-  cpf   String
+  cpf   String 
   admin Boolean
 }
 
 model Table {
   id     Int    @id @default(autoincrement())
-  num String
+  num  Int 
   bills  Bill[]
 }
 

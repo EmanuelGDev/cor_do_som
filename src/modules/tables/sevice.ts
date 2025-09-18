@@ -11,13 +11,36 @@ class TableService{
         return tables;
     }
 
-    async createTable({num} : TableProps){
+    async createTable(num : string){
+
+        const existsTable = await prisma.table.findFirst({
+            where:{num : Number(num)}
+        });
+
+        if(existsTable){
+            throw new Error("Mesa já cadastrada")
+        }
         const table = await prisma.table.create({
             data: {
-                num
+                num : Number(num)
             }
         });
         return table;
+    }
+
+    async deleteTable(id : string ){
+        const table = await prisma.table.findFirst({
+            where:{id : Number(id)}
+        });
+
+        if(!table){
+            throw new Error("Mesa ja fechada")
+        }
+
+        const deleteTable = await prisma.table.delete({where
+            :{id : Number(id)}})
+
+        return table
     }
 
 }

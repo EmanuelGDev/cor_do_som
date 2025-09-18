@@ -6,9 +6,6 @@ interface UserProps{
     admin : boolean
 }
 
-interface DeleteUserParamns{
-    id : string
-}
 
 class UserService{
 
@@ -45,6 +42,8 @@ class UserService{
 
         const deleteUser = await prisma.user.delete({where
             :{id : Number(id)}})
+
+        return user
     }
 }
 

@@ -10,9 +10,10 @@ async function tableRoutes(fastify: FastifyInstance){
 
     fastify.post('/create',(request : FastifyRequest, reply : FastifyReply) =>      
         tableController.createTable(request,reply))
-        
-    /*fastify.delete('/delete/:id', (request: FastifyRequest, reply : FastifyReply)=> 
-        tableController.deleteTable(request,reply))*/
+
+    fastify.delete('/delete/:id',(request : FastifyRequest, reply : FastifyReply) =>    
+    
+        tableController.deleteTable(request,reply))
 }
 
 export {tableRoutes }
