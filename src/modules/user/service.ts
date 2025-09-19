@@ -28,6 +28,15 @@ class UserService{
         if(!name || !cpf || admin ===undefined){
             throw new Error("Preencha todos os campos")
         }
+
+        const existsUser = await prisma.user.findFirst({
+            where:{cpf : cpf}
+        })
+
+        if(existsUser){
+            throw new Error("Cpf já cadastrado")
+        }
+
         const user = await prisma.user.create({
             data:{
                 name,
