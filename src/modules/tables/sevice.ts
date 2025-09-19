@@ -11,6 +11,13 @@ class TableService{
         return tables;
     }
 
+    async getTable(id:string){
+        const table = await prisma.table.findFirst({
+            where:{id : Number(id)}
+        })
+        return table
+    }
+
     async createTable(num : string){
 
         const existsTable = await prisma.table.findFirst({

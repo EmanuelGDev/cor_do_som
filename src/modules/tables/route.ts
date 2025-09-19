@@ -4,6 +4,11 @@ import { TableController,  } from "./controller";
 const tableController = new TableController();
 
 async function tableRoutes(fastify: FastifyInstance){
+
+    fastify.get('/:id',(request : FastifyRequest, reply : FastifyReply) => 
+        
+        tableController.getTable(request,reply))
+
     fastify.get('/',(request : FastifyRequest, reply : FastifyReply) => 
         
         tableController.getTables(request,reply))

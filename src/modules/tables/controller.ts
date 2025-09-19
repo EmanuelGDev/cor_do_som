@@ -18,6 +18,16 @@ class TableController{
         }
     }
 
+    async getTable(request : FastifyRequest, reply : FastifyReply){
+        try{
+            const {id} = request.params as {id: string}
+            const table = await this.service.getTable(id);
+            return reply.code(200).send(table)
+        } catch(err){
+            return reply.code(400)
+        }
+    }    
+
     async createTable(request: FastifyRequest, reply : FastifyReply){ 
         try{
             const {num} = request.body as {num : string}

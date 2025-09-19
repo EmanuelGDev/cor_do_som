@@ -4,6 +4,11 @@ import { UserController} from "./controller";
 const userController = new UserController();
 
 async function userRoutes(fastify: FastifyInstance){
+
+    fastify.get('/:id',(request : FastifyRequest, reply : FastifyReply) => 
+        
+        userController.getUser(request,reply))
+    
     fastify.get('/',(request : FastifyRequest, reply : FastifyReply) => 
         
         userController.getUsers(request,reply))
@@ -15,6 +20,8 @@ async function userRoutes(fastify: FastifyInstance){
     fastify.delete('/delete/:id', (request: FastifyRequest, reply : FastifyReply)=>
         
         userController.deleteUser(request,reply))
+    
+
 }
 
 export {userRoutes}
