@@ -14,7 +14,7 @@ class TableController{
             const tables = await this.service.getTables();
             return reply.code(200).send(tables)
         } catch(err){
-            return reply.code(400)
+            return reply.code(400).send(err)
         }
     }
 
@@ -24,7 +24,7 @@ class TableController{
             const table = await this.service.getTable(id);
             return reply.code(200).send(table)
         } catch(err){
-            return reply.code(400)
+            return reply.code(400).send(err)
         }
     }    
 
