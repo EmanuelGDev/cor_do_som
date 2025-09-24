@@ -13,6 +13,13 @@ class ProductService{
         return products
     }
 
+    async getProduct(id: string){
+        const product = await prisma.product.findFirst({
+            where:{id : Number(id)}
+        })
+        return product
+    }
+
     async createProduct({name,price,type} : createProductProps){
         
         if(!name || !price || !type){

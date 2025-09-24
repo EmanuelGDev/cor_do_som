@@ -14,9 +14,20 @@ class ProductController{
             const products = await this.service.getProducts()
             return reply.code(200).send(products)
         }catch(err){
-            return reply.code(400)
+            return reply.code(400).send(err)
         }
     }
+
+    async getProduct(request : FastifyRequest, reply : FastifyReply){
+        try{
+            const {id} = request.params as {id: string}
+            const product = await this.service.getProduct(id)
+            return reply.code(200).send(product)
+        }catch(err){
+            return reply.code(400).send(err)
+        }
+    }
+
     async createProduct(request : FastifyRequest, reply : FastifyReply){
          try{
             const {name, price, type} = request.body as {name: string, price : Number, type: string}
