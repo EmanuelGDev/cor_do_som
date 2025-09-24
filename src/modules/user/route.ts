@@ -21,7 +21,6 @@ async function userRoutes(fastify: FastifyInstance){
         
         userController.deleteUser(request,reply))
     
-
 }
 
 export {userRoutes}
