@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "public"."Table" ADD COLUMN     "oppening" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
