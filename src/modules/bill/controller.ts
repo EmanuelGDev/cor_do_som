@@ -18,6 +18,26 @@ class BillController{
             reply.code(400).send(err)
         }
     }
+
+    async getBills(request: FastifyRequest, reply : FastifyReply){
+        try{
+            const {tableId} = request.params as {tableId : string}
+            const bills = await this.service.getBills(tableId)
+            return reply.code(200).send(bills)
+        }catch(err){
+            reply.code(400).send(err)
+        }
+    }
+
+    async addProductToBill(request: FastifyRequest, reply : FastifyReply){
+        try{
+            const {productId, billId} = request.body as {productId : string, billId : string}
+            const response = await this.service.addProductToBill(productId, billId)
+            return reply.code(200).send(response)
+        }catch(err){
+            reply.code(400).send(err)
+        }
+    }
 }
 
 export {BillController}
