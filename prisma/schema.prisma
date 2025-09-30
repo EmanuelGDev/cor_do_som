@@ -44,3 +44,9 @@ model Bill {
   table    Table     @relation(fields: [tableId], references: [id])
   products Product[]
 }
+
+model ProductBill{
+  id       Int       @id @default(autoincrement())
+  billId Int
+  productId Int
+}
