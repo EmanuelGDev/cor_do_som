@@ -25,7 +25,6 @@ class BillService{
         return bill
     }
 
-<<<<<<< HEAD
     async getBills(tableId : string){
         const bills = await prisma.bill.findMany({
             where:{tableId : Number(tableId)}
@@ -52,53 +51,19 @@ class BillService{
             where:{id : Number(billId)},
             data:{amount : newAmount}
         })
+
+        await prisma.productBill.create({
+            data:{
+                billId : Number(billId),
+                productId : Number(productId)
+            }
+        })
         return {message : "Produto adicionado com sucesso"} 
 
 
     }
 
 
-=======
-    async linkProductToBill(billId : string, productId : string){
-        if(!billId || !productId){
-            throw new Error("Preencha todos os campos")
-        }   
-        const bill = await prisma.bill.findUnique({
-            where:{
-                id : Number(billId)
-            }
-        })  
-        if(!bill){
-            throw new Error("Conta não encontrada")
-        }   
-        const product = await prisma.product.findUnique({
-            where:{
-                id : Number(productId)  
-            }
-        })
-        if(!product){
-            throw new Error("Produto não encontrado")
-        }
-        const billProduct = await prisma.productBill.create({
-            data:{
-                billId : Number(billId),
-                productId : Number(productId)
-            }
-        })
-
-        await prisma.bill.update({
-            where:{
-                id : Number(billId) 
-            },
-            data:{
-                amount : bill.amount + product.price
-            }
-        })  
-        return billProduct
-        
-    }
-
->>>>>>> 90bf432c456cc25eda020788795dda95c98e0ae2
 }
 
 export {BillService}
