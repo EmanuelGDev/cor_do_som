@@ -38,6 +38,16 @@ class BillController{
             reply.code(400).send(err)
         }
     }
+
+    async deleteBill(request: FastifyRequest, reply : FastifyReply){
+        try{
+            const {id} = request.params as {id : string}
+            const deletedBill = await this.service.deleteBill(id)
+            return reply.code(200).send(deletedBill)
+        }catch(err){
+            reply.code(400).send(err)
+        }
+    }
 }
 
 export {BillController}

@@ -41,12 +41,11 @@ class TableService{
         });
 
         if(!table){
-            throw new Error("Mesa ja fechada")
+            throw new Error("Mesa não existe")
         }
 
-        const deleteTable = await prisma.table.delete({where
-            :{id : Number(id)}})
-
+        const deleteTable = await prisma.table.delete({
+            where:{id : Number(id)}})
         return table
     }
 

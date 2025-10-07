@@ -55,8 +55,17 @@ class BillService{
 
 
     }
-
-
+    async deleteBill(id : string){
+        const bill = await prisma.bill.findFirst({
+            where:{id : Number(id)}
+        });
+        if(!bill){
+            throw new Error("Conta não existe")
+        }   
+        const deleteBill = await prisma.bill.delete({
+            where:{id : Number(id)}})
+        return bill
+    }
 }
 
 export {BillService}
