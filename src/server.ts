@@ -34,14 +34,4 @@ app.decorate(
 
 app.register(routes);
 
-const start = async () => {
-  try {
-    await app.listen({ port: 8000 });
-  } catch (err) {
-    process.exit(1);
-  }
-};
-
-start();
-
 export { app };
