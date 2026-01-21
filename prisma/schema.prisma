@@ -42,4 +42,6 @@ model ProductBill{
   id       Int       @id @default(autoincrement())
   billId Int
   productId Int
+  productName String
+  productPrice Float
 }

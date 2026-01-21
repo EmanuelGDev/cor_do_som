@@ -44,7 +44,17 @@ class BillService{
         })  
         if(!bill){
             throw new Error("Conta inexistente")
-        }   
+        }
+        
+        await prisma.productBill.create({
+            data:{
+                billId : Number(billId),
+                productId : Number(productId),
+                productName : product.name,
+                productPrice : product.price
+            }
+        })
+
         const newAmount = bill.amount + product.price;
 
         await prisma.bill.update({
@@ -98,11 +108,15 @@ class BillService{
 
     }
 
-    async getBillProducts(billId : string){
+    async getBill(billId : string){
+
+        const bill = await prisma.bill.findFirst({
+            where:{id : Number(billId)}
+        })
         const products = await prisma.productBill.findMany({
             where:{billId : Number(billId)},
         })
-        return products
+        return [bill, products];
     }
 }
 
