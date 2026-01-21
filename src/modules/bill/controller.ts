@@ -58,6 +58,15 @@ class BillController{
             reply.code(400).send(err)
         }
     }
+    async getBillProducts(request: FastifyRequest, reply : FastifyReply){
+        try{
+            const {billId} = request.params as {billId : string}
+            const products = await this.service.getBillProducts(billId)
+            return reply.code(200).send(products)
+        }catch(err){
+            reply.code(400).send(err)
+        }
+    }
 }
 
 export {BillController}

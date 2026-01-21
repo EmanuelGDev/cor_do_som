@@ -25,6 +25,10 @@ async function billRoutes(fastify: FastifyInstance){
     fastify.delete('/delete-product/:billId/:productId',{ preHandler: [authenticate] }, async (request : FastifyRequest, reply : FastifyReply) => {
         billController.deleteProductFromBill(request, reply)
     })
+
+    fastify.get('/billProducts/:billId', async (request : FastifyRequest, reply : FastifyReply) => {
+        billController.getBillProducts(request, reply)
+    })
     }
 
 export {billRoutes}

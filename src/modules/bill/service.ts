@@ -82,11 +82,27 @@ class BillService{
         }
         const newAmount = bill.amount - product.price;
 
+        await prisma.productBill.deleteMany({
+            where:{
+                billId : Number(billId),
+                productId : Number(productId)
+            }
+        })
+
         await prisma.bill.update({
             where:{id : Number(billId)},
             data:{amount : newAmount}
         })
+
         return {message : "Produto removido com sucesso"} 
+
+    }
+
+    async getBillProducts(billId : string){
+        const products = await prisma.productBill.findMany({
+            where:{billId : Number(billId)},
+        })
+        return products
     }
 }
 
