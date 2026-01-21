@@ -66,6 +66,28 @@ class BillService{
             where:{id : Number(id)}})
         return bill
     }
+
+    async deleteProductFromBill(billId : string, productId : string){
+        const product = await prisma.product.findFirst({
+            where:{id : Number(productId)}
+        })
+        if(!product){
+            throw new Error("Produto inexistente")
+        }
+        const bill = await prisma.bill.findFirst({
+            where:{id : Number(billId)}
+        })
+        if(!bill){
+            throw new Error("Conta inexistente")
+        }
+        const newAmount = bill.amount - product.price;
+
+        await prisma.bill.update({
+            where:{id : Number(billId)},
+            data:{amount : newAmount}
+        })
+        return {message : "Produto removido com sucesso"} 
+    }
 }
 
 export {BillService}
