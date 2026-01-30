@@ -113,9 +113,17 @@ class BillService{
         const bill = await prisma.bill.findFirst({
             where:{id : Number(billId)}
         })
+
+        if(!bill){
+            throw new Error("Conta inexistente")
+        }
         const products = await prisma.productBill.findMany({
             where:{billId : Number(billId)},
         })
+
+        if(products.length === 0){
+            throw new Error("Nenhum produto adicionado a esta conta")
+        }
         return products;
     }
 }
