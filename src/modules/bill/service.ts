@@ -116,7 +116,7 @@ class BillService{
         const products = await prisma.productBill.findMany({
             where:{billId : Number(billId)},
         })
-        return [bill, products];
+        return products;
     }
 }
 
