@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "vercel-build": "npx prisma migrate deploy",
-     "postinstall": "prisma generate"
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "@fastify/cors": "^11.1.0",
     "@fastify/jwt": "^10.0.0",
     "@prisma/client": "^6.16.2",
+    "@prisma/internals": "^7.3.0",
     "dotenv": "^17.2.3",
     "fastify": "^5.6.0",
     "jsonwebtoken": "^9.0.2",
