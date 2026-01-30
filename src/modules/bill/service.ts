@@ -121,6 +121,8 @@ class BillService{
             where:{billId : Number(billId)},
         })
 
+        console.log(products)
+
         if(products.length === 0){
             throw new Error("Nenhum produto adicionado a esta conta")
         }
